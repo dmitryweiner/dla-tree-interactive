@@ -8,6 +8,7 @@ class Game {
     this.treePoints = [];
     this.movingPoints = [];
     this.state = STATE_STOPPED;
+    this.lastRender = null;
   }
 
   start() {
@@ -45,11 +46,27 @@ class Game {
       return true;
     });
 
+    this.lastRender = new Date();
     setTimeout(() => {
       pointsToDelete.forEach(point => point.deleteDOMElement());
       this.movingPoints.forEach(point => point.render());
       this.treePoints.forEach(point => point.render());
+      this.renderGameStats();
     }, 0);
+  }
+
+  renderGameStats () {
+    const staticCounterElement = document.getElementById('staticCounter');
+    const dynamicCounterElement = document.getElementById('dynamicCounter');
+    const delayElement = document.getElementById('loopDelay');
+    const currentDate = new Date();
+    const delay = currentDate.getTime() - this.lastRender.getTime();
+    console.log(delay);
+
+    staticCounterElement.innerText = `${this.treePoints.length}`;
+    dynamicCounterElement.innerText = `${this.movingPoints.length}`;
+    delayElement.innerText = `${delay}`;
+
   }
 
   addMovingPoint(x, y) {
