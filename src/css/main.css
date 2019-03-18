@@ -1,0 +1,50 @@
+html, body {
+    margin: 0;
+    height:100%;
+    width:100%;
+}
+
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+#gameField {
+    background-color: #000;
+}
+
+.full-screen {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.point {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    z-index: 0;
+    border-radius: 3px;
+    user-select: none;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;
+    filter: blur(1px);
+}
+
+.moving-point {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    z-index: 0;
+    border-radius: 3px;
+    user-select: none;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;
+    filter: blur(1px);
+}
+
+

@@ -1,0 +1,20 @@
+{
+  "name": "dla-tree-interactive",
+  "version": "1.0.0",
+  "description": "DLA tree in browser - Grow you own tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Weiner",
+  "license": "WTFPL",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-preset-minify": "^0.5.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-htmlmin": "^5.0.1"
+  }
+}
