@@ -4,7 +4,7 @@
   "description": "DLA tree in browser - Grow you own tree",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/gulp/bin/gulp.js"
   },
   "author": "Dmitry Weiner",
   "license": "WTFPL",
