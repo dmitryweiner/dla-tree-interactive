@@ -8,7 +8,7 @@ class Game {
     this.treePoints = [];
     this.movingPoints = [];
     this.state = STATE_STOPPED;
-    this.lastRender = null;
+    this.lastRender = new Date();
   }
 
   start() {
@@ -30,7 +30,6 @@ class Game {
   }
 
   tick() {
-
     const pointsToDelete = [];
 
     this.movingPoints = this.movingPoints.filter((point) => {
@@ -46,31 +45,27 @@ class Game {
       return true;
     });
 
+    pointsToDelete.forEach(point => point.deleteDOMElement());
+    this.movingPoints.forEach(point => point.render());
+    this.treePoints.forEach(point => point.render());
+    this.renderGameStats();
     this.lastRender = new Date();
-    setTimeout(() => {
-      pointsToDelete.forEach(point => point.deleteDOMElement());
-      this.movingPoints.forEach(point => point.render());
-      this.treePoints.forEach(point => point.render());
-      this.renderGameStats();
-    }, 0);
   }
 
   renderGameStats () {
     const staticCounterElement = document.getElementById('staticCounter');
     const dynamicCounterElement = document.getElementById('dynamicCounter');
-    const delayElement = document.getElementById('loopDelay');
+    const fpsElement = document.getElementById('fps');
     const currentDate = new Date();
     const delay = currentDate.getTime() - this.lastRender.getTime();
-    console.log(delay);
 
     staticCounterElement.innerText = `${this.treePoints.length}`;
     dynamicCounterElement.innerText = `${this.movingPoints.length}`;
-    delayElement.innerText = `${delay}`;
+    fpsElement.innerText = `${Number(1000/delay).toFixed(2)}`;
 
   }
 
   addMovingPoint(x, y) {
-    console.log('addMovingPoint(x, y)', x, y);
     this.movingPoints.push(new MovingPoint(x, y, this.treePoints.length));
   }
 }
