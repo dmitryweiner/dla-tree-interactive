@@ -1,7 +1,7 @@
 # DLA tree in browser
 ## Grow you own tree
 
-![sample screen](sample.jpg)
+![sample screen](sample.png)
 
 Based on natural process https://en.wikipedia.org/wiki/Diffusion-limited_aggregation
 
@@ -32,6 +32,6 @@ Click on the screen as fast as you can to produce more resources for tree growth
 
 * Generate points on mouse move
 
-* Add constols, stats
+* Add constols, stats [x]
 
 * Add dissolving points 
