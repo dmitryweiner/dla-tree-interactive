@@ -9,23 +9,22 @@ class Point {
     this.n = n;
     this.size = 5;
     this.className = 'point';
-    console.log('creating Point', this);
+
+    const gameField = document.getElementById(GAME_FIELD_ID);
+    const color = getColorByNumber(this.n);
+    const element = document.createElement('div');
+    element.setAttribute('id', this.id);
+    element.setAttribute('class', this.className);
+    element.style.setProperty('background-color', color);
+    element.style.setProperty('border-color', color);
+    element.style.left = this.x + 'px';
+    element.style.top = this.y + 'px';
+    gameField.appendChild(element);
+
+    this.element = element;
   }
 
   render() {
-    let element = document.getElementById(this.id);
-    if (!element) {
-      const gameField = document.getElementById(GAME_FIELD_ID);
-      const color = getColorByNumber(this.n);
-      element = document.createElement('div');
-      element.setAttribute('id', this.id);
-      element.setAttribute('class', this.className);
-      element.style.setProperty('background-color', color);
-      element.style.setProperty('border-color', color);
-      element.style.left = this.x + 'px';
-      element.style.top = this.y + 'px';
-      gameField.appendChild(element);
-    }
   }
 
   deleteDOMElement() {

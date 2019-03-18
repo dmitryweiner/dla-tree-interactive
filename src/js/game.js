@@ -29,6 +29,9 @@ class Game {
   }
 
   tick() {
+
+    const pointsToDelete = [];
+
     this.movingPoints = this.movingPoints.filter((point) => {
       point.moveRandomly();
       if (point.checkCollision(this.treePoints)) {
@@ -36,14 +39,17 @@ class Game {
         this.treePoints.push(new Point(point.x, point.y, this.treePoints.length));
 
         // delete this moving point
-        point.deleteDOMElement();
+        pointsToDelete.push(point);
         return false;
       }
       return true;
     });
 
-    this.movingPoints.forEach(point => point.render());
-    this.treePoints.forEach(point => point.render());
+    setTimeout(() => {
+      pointsToDelete.forEach(point => point.deleteDOMElement());
+      this.movingPoints.forEach(point => point.render());
+      this.treePoints.forEach(point => point.render());
+    }, 0);
   }
 
   addMovingPoint(x, y) {

@@ -5,6 +5,11 @@ class MovingPoint extends Point {
   constructor(x, y, n) {
     super(x, y, n);
     this.className = 'moving-point';
+
+    const color = getColorByNumber(this.n);
+    this.element.setAttribute('class', this.className);
+    this.element.style.setProperty('background-color', color);
+    this.element.style.setProperty('border-color', color);
   }
 
   moveRandomly() {
@@ -35,18 +40,8 @@ class MovingPoint extends Point {
 
   render() {
     super.render();
-
-    const element = document.getElementById(this.id);
-    if (element) {
-      if (element.getAttribute('class') !== this.className) {
-        const color = getColorByNumber(this.n);
-        element.setAttribute('class', this.className);
-        element.style.setProperty('background-color', color);
-        element.style.setProperty('border-color', color);
-      }
-      element.style.left = this.x + 'px';
-      element.style.top = this.y + 'px';
-    }
+    this.element.style.left = this.x + 'px';
+    this.element.style.top = this.y + 'px';
   }
 
 }
