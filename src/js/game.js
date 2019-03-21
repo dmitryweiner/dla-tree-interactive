@@ -9,6 +9,7 @@ class Game {
     this.movingPoints = [];
     this.state = STATE_STOPPED;
     this.lastRender = new Date();
+    this.delay = 0;
   }
 
   start() {
@@ -27,6 +28,10 @@ class Game {
 
   getCurrentState() {
     return this.state;
+  }
+
+  getDelay() {
+    return this.delay;
   }
 
   tick() {
@@ -49,19 +54,20 @@ class Game {
     this.movingPoints.forEach(point => point.render());
     this.treePoints.forEach(point => point.render());
     this.renderGameStats();
-    this.lastRender = new Date();
+
+    const currentDate = new Date();
+    this.delay = currentDate.getTime() - this.lastRender.getTime();
+    this.lastRender = currentDate;
   }
 
   renderGameStats () {
     const staticCounterElement = document.getElementById('staticCounter');
     const dynamicCounterElement = document.getElementById('dynamicCounter');
     const fpsElement = document.getElementById('fps');
-    const currentDate = new Date();
-    const delay = currentDate.getTime() - this.lastRender.getTime();
 
     staticCounterElement.innerText = `${this.treePoints.length}`;
     dynamicCounterElement.innerText = `${this.movingPoints.length}`;
-    fpsElement.innerText = `${Number(1000/delay).toFixed(2)}`;
+    fpsElement.innerText = `${Math.round(1000 / this.delay)}`;
 
   }
 

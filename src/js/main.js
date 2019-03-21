@@ -13,7 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
   function gameTick() {
     if (game.getCurrentState() === STATE_PLAYING) {
       game.tick();
-      requestAnimationFrame(gameTick);
+      const actualDelay = game.getDelay();
+      const plannedDelay = 1000 / FPS;
+
+      if (actualDelay < plannedDelay) {
+        setTimeout(() => requestAnimationFrame(gameTick), plannedDelay - actualDelay);
+      } else {
+        requestAnimationFrame(gameTick);
+      }
     }
   }
 
