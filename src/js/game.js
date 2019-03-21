@@ -72,7 +72,7 @@ class Game {
   }
 
   addMovingPoint(x, y) {
-    this.movingPoints.push(new MovingPoint(x, y, this.treePoints.length));
+    this.movingPoints.push(new MovingPoint(x, y, this.movingPoints.length));
   }
 }
 
