@@ -19,6 +19,13 @@ function getColorByNumber(number) {
   return `#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`;
 }
 
+function getFrequencyByNumber(number) {
+  const minFrequency = 200;
+  const maxFrequency = 2000;
+  const coeff = 0.05;
+  return minFrequency + (Math.sin(number * coeff) + 1) * (maxFrequency - minFrequency) / 2;
+}
+
 (function() {
   var lastTime = 0;
   var vendors = ['ms', 'moz', 'webkit', 'o'];

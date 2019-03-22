@@ -10,6 +10,7 @@ class Game {
     this.state = STATE_STOPPED;
     this.lastRender = new Date();
     this.delay = 0;
+    this.audioContext =  new (window.AudioContext || window.webkitAudioContext)();
   }
 
   start() {
@@ -41,7 +42,10 @@ class Game {
       point.moveRandomly();
       if (point.checkCollision(this.treePoints)) {
         // create new tree point
-        this.treePoints.push(new Point(point.x, point.y, this.treePoints.length));
+        const newPoint = new Point(point.x, point.y, this.treePoints.length);
+        newPoint.createSound(this.audioContext);
+        newPoint.playSound();
+        this.treePoints.push(newPoint);
 
         // delete this moving point
         pointsToDelete.push(point);

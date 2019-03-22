@@ -27,6 +27,14 @@ class Point {
   render() {
   }
 
+  createSound(context) {
+    this.sound = SoundFactory.createSound(context, getFrequencyByNumber(this.n), 5);
+  }
+
+  playSound() {
+    this.sound.play();
+  }
+
   deleteDOMElement() {
       const element = document.getElementById(this.id);
       if (element) {
